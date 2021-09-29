@@ -25,7 +25,7 @@ class CreateStudentsTable extends Migration
             $table->string('phone',30)->unique();
             $table->string('current_address',255)->nullable();
             $table->string('guardian_name',100)->nullable();
-            $table->integer('guardian_mobile')->nullable();
+            $table->string('guardian_mobile')->nullable();
             $table->string('aadhar_no')->unique();
             $table->rememberToken();
             $table->timestamps();

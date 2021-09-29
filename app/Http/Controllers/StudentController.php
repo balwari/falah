@@ -22,11 +22,11 @@ class StudentController extends Controller
             'photo' => 'required|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'entry_year' => 'required|integer',
             'dob' => 'required',
-            'phone' => 'required|integer',
+            'phone' => 'required',
             'current_address' => 'required|string',
             'guardian_name' => 'required|string',
-            'guardian_mobile' => 'required|integer',
-            'aadhar_no' => 'required|integer|unique:students,aadhar_no',
+            'guardian_mobile' => 'required',
+            'aadhar_no' => 'required|unique:students,aadhar_no',
         ];
 
         $customMessages = [
@@ -52,5 +52,12 @@ class StudentController extends Controller
             return JsonApiResponse::error('Something went wrong in adding Student',422);
         }
         return JsonApiResponse::success('Successfully Added Student', ['data' => $student_details]);
+    }
+
+    function get(Request $request)
+    {   
+        $students = Student::paginate(10);
+        
+        return JsonApiResponse::success('Successfully fetched students', $students->toArray());
     }
 }

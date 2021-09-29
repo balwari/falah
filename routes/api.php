@@ -25,11 +25,11 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::post('/logout', 'App\Http\Controllers\LogoutController@logout');
 
-    /** user routes*/
+    /** student routes*/
 
     Route::group(['prefix' => 'students'], function () {
         Route::get('/', 'App\Http\Controllers\StudentController@get');        
-        Route::get('/add', 'App\Http\Controllers\StudentController@add');        
+        Route::post('/add', 'App\Http\Controllers\StudentController@add');        
     });
 });
 
